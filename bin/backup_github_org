@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -e
+
+trap cleanup EXIT
+
+cleanup() {
+  cd "$(dirs -l -0)" && dirs -c
+}
+
+setup() {
+  pushd "${0%/*}" > /dev/null
+  export GH_AUTH_TOKEN
+  export GH_ORG
+  chk_disk_for_conf
+  sanity_check
+  chk_org_folder
+}
+
+chk_org_folder() {
+  if [[ ! -d "$GH_ORG" ]]; then
+    mkdir -p "$GH_ORG"
+  fi
+}
+
+chk_disk_for_conf() {
+  if [[ -f .github_auth ]]; then
+    GH_AUTH_TOKEN="$(cat .github_auth)"
+  fi
+  if [[ -f .github_org ]]; then
+    GH_ORG="$(cat .github_org)"
+  fi
+}
+
+mirror() {
+  pushd "$GH_ORG" > /dev/null
+  declare -i page=1
+  while true; do
+    repos=$(get_repos $page)
+    if [ -z "$repos" ]; then
+      break
+    fi
+    for repo in $repos; do
+      if [[ -d "${repo}.git" ]]; then
+        pushd "${repo}.git" > /dev/null
+        echo "## Fetch: ${GH_ORG}/${repo}.git"
+        git fetch --all
+        popd > /dev/null
+      else
+        echo "## Clone: ${GH_ORG}/${repo}.git"
+        git clone --mirror git@github.com:${GH_ORG}/${repo}.git
+      fi
+    done
+    ((page++))
+  done
+  popd > /dev/null
+}
+
+isnt_null() {
+  if [ -z "${!1}" ]; then
+    >&2 echo "Please make sure $1 is populated"; exit 1
+  fi
+}
+
+is_installed() {
+  if ! type $1 >/dev/null 2>&1; then
+    >&2 echo "Please install $1"; exit 1
+  fi
+}
+
+sanity_check() {
+  for var in GH_AUTH_TOKEN GH_ORG; do isnt_null $var; done
+  for tool in jq curl; do is_installed $tool; done
+}
+
+get_repos() {
+  curl -su ${GH_AUTH_TOKEN}:x-oauth-basic https://api.github.com/orgs/${GH_ORG}/repos\?page=$1 | jq -r .[].name
+}
+
+main() {
+  setup
+  mirror
+}
+
+main "$@"
+
