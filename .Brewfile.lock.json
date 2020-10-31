@@ -5,16 +5,16 @@
         "revision": "9aed384937bdf545b5c4e3e1fcc0a2bd686dd979"
       },
       "homebrew/cask": {
-        "revision": "9ca96e4b82b38f2f1f373c236ad553acc8c7485c"
+        "revision": "f9978006633828647ce00cdcd1ca58070c1dbbda"
       },
       "homebrew/cask-fonts": {
         "revision": "c3cb3c16c0baa14a12b6201ff73765355eda33a1"
       },
       "homebrew/cask-versions": {
-        "revision": "de3159225d75ac1c4e09f6aaa8b7f15fb3118f02"
+        "revision": "8998acac179f96d7691925a7db134292b040f343"
       },
       "homebrew/core": {
-        "revision": "78460960267e5d07198737884dda8fafdae1c907"
+        "revision": "140fee42f5f062a9f4706c3f65b5b5818a6e487e"
       },
       "homebrew/services": {
         "revision": "0abad99771eed7989a5c16e3e3eb1f0d9748f80d"
@@ -27,6 +27,9 @@
       },
       "universal-ctags/universal-ctags": {
         "revision": "48798de4a2f12a1e4d3b7b638a093ca859a1e58f"
+      },
+      "xwmx/taps": {
+        "revision": "3922c5e1e19d7176fc408399f67902c9e56ecea3"
       }
     },
     "brew": {
@@ -634,6 +637,58 @@
             }
           }
         }
+      },
+      "pandoc": {
+        "version": "2.10.1",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/pandoc-2.10.1.catalina.bottle.1.tar.gz",
+              "sha256": "720d055d2bdafbe818f50e186e710f7a8178719b56cfafa1d1948af16df7d7ea"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/pandoc-2.10.1.mojave.bottle.1.tar.gz",
+              "sha256": "7174b62811cd4d4116bcb5edcfb55793f733e39ad79d8e8914a8b5e2c71f2b78"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/pandoc-2.10.1.high_sierra.bottle.1.tar.gz",
+              "sha256": "ef823fe9876a5a6c3fe25db6b8dbca7b372320f7e6f5c5b224a7696acf5c397b"
+            }
+          }
+        }
+      },
+      "w3m": {
+        "version": "0.5.3_6",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/w3m-0.5.3_6.catalina.bottle.1.tar.gz",
+              "sha256": "274f48d738d351b3c6a07ada24b866a485c49d400f36108d904a6d2a8835a660"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/w3m-0.5.3_6.mojave.bottle.1.tar.gz",
+              "sha256": "c2a4f7208e98f575eadaff6af3dc9a93305008b93d2f069c53d687ba61b85d64"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/w3m-0.5.3_6.high_sierra.bottle.1.tar.gz",
+              "sha256": "bc46bb9b70d7149058d2c757aa0b8ea68c7c6836faee26da0b697d81cca0927d"
+            },
+            "sierra": {
+              "url": "https://homebrew.bintray.com/bottles/w3m-0.5.3_6.sierra.bottle.1.tar.gz",
+              "sha256": "809a34cb2c14b98827cfe9f18008b0ebc545e359c5f8c1279e71948ac336bdd1"
+            }
+          }
+        }
+      },
+      "xwmx/taps/nb": null,
+      "ag": null,
+      "ack": {
+        "version": "3.4.0",
+        "bottle": false
       }
     },
     "cask": {
@@ -732,6 +787,18 @@
         "options": {
           "full_name": "font-space-mono-nerd-font"
         }
+      },
+      "macdown": {
+        "version": "0.7.2",
+        "options": {
+          "full_name": "macdown"
+        }
+      },
+      "visual-studio-code": {
+        "version": "1.50.1",
+        "options": {
+          "full_name": "visual-studio-code"
+        }
       }
     },
     "mas": {
@@ -745,7 +812,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.5.7",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "78460960267e5d07198737884dda8fafdae1c907",
+        "Homebrew/homebrew-core": "140fee42f5f062a9f4706c3f65b5b5818a6e487e",
         "CLT": "12.1.0.0.1.1602137645",
         "Xcode": "12.0",
         "macOS": "10.15.7"

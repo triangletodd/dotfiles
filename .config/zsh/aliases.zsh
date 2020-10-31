@@ -1,14 +1,13 @@
-_cmdexists() { hash "$@" 2> /dev/null }
-if _cmdexists exa; then
+if hash exa 2> /dev/null; then
   alias ls='exa'
   alias tree='exa --tree'
 fi
 
-if _cmdexists bat; then
+if hash bat 2> /dev/null; then
   alias cat='bat'
 fi
 
-if _cmdexists nvim; then
+if hash nvim 2> /dev/null; then
   alias vim='nvim'
 fi
 
@@ -20,7 +19,7 @@ alias vedit='pushd ${XDG_CONFIG_HOME} && \
   vim vim/vimrc nvim/init.vim; \
   popd'
 alias zedit='pushd "${ZDOTDIR}" && \
-  vim -p ${HOME}/.zshenv .zshrc *.zsh \
-  dirs'
+  vim -p ${HOME}/.zshenv .zshrc *.zsh; \
+  popd'
 
 # vim: ft=zsh :
