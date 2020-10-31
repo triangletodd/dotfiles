@@ -1,6 +1,7 @@
 _cmdexists() { hash "$@" 2> /dev/null }
 if _cmdexists exa; then
   alias ls='exa'
+  alias tree='exa --tree'
 fi
 
 if _cmdexists bat; then
