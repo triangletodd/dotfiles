@@ -12,8 +12,6 @@ if _cmdexists nvim; then
   alias vim='nvim'
 fi
 
-_ppath() { perl -pe 's/:/\n/g' <<<  $PATH }
-
 ## conf aliases
 alias tedit='pushd ${HOME} && \
   nvim .tmux.conf .tmux_line.conf; \
