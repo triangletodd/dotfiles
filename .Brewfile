@@ -1,0 +1,67 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+
+brew "bc"
+brew "diff-so-fancy"
+brew "elinks"
+brew "gcc"
+brew "gnu-sed"
+brew "gh"
+brew "git"
+brew "gnupg"
+brew "htop"
+brew "httpie"
+brew "hub"
+brew "jq"
+brew "krew"
+brew "lazydocker"
+brew "lazygit"
+brew "litecli"
+brew "mas"
+brew "neovim"
+brew "prettyping"
+brew "pgcli"
+brew "ripgrep"
+brew "tig"
+brew "tldr"
+brew "watch"
+brew "wget"
+brew "yadm"
+brew "yamllint"
+brew "z"
+
+
+tap "atombender/ktail"
+brew "atombender/ktail/ktail"
+
+tap "robscott/tap"
+brew "robscott/tap/kube-capacity"
+
+tap "universal-ctags/universal-ctags"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
+
+cask "1password"
+cask "amethyst"
+cask "authy"
+cask "alfred"
+cask "docker"
+cask "dropbox"
+cask "box-drive"
+cask "caffeine"
+cask "google-chrome"
+cask "google-cloud-sdk"
+cask "iterm2"
+cask "nextcloud"
+cask "slack"
+cask "stats"
+cask "whatsapp"
+
+cask "font-space-mono-nerd-font"
+
+mas 'tailscale', id: 1475387142 # tailscale
+mas 'ms remote desktop', id: 1295203466 # microsoft remove desktop
+mas 'spark', id: 1176895641 # spark

@@ -1,0 +1,5 @@
+zinit delete -a -y
+rm -rf $ZDOTDIR/.zcompdump
+exec $SHELL -l
+
+# vim: ft=sh :
