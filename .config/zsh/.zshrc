@@ -38,7 +38,8 @@ path=(
 export EDITOR=nvim
 export KEYTIMEOUT=1
 export PAGER=nvimpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
@@ -66,7 +67,7 @@ local _zinit_plugins=(
       starship/starship
    atclone"./install.sh" as"null"
       @Homebrew/install
-   wait lucid atinit"zicompinit; zicdreplay"
+   wait lucid
       zdharma/fast-syntax-highlighting
    wait lucid
       zsh-users/zsh-autosuggestions
@@ -89,6 +90,12 @@ local _zinit_plugins=(
 )
 zinit for ${_zinit_plugins#}
 #}}}
+
+# COMPINIT {{{
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+zinit cdreplay -q
+# }}}
 
 # CUSTOM {{{
 source $ZDOTDIR/aliases.zsh
