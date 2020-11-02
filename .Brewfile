@@ -23,7 +23,9 @@ brew "krew"
 brew "lazydocker"
 brew "lazygit"
 brew "litecli"
-brew "mas"
+if OS.mac?
+  brew "mas"
+end
 brew "nmap"
 brew "pandoc"
 brew "prettyping"
@@ -47,8 +49,10 @@ brew "xwmx/taps/nb"
 tap "robscott/tap"
 brew "robscott/tap/kube-capacity"
 
-tap "universal-ctags/universal-ctags"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
+if OS.mac?
+  tap "universal-ctags/universal-ctags"
+  brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
+end
 
 cask "1password"
 cask "amethyst"

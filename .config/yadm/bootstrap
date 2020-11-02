@@ -13,11 +13,17 @@ main() {
   local gem=( "neovim" )
 
   install_apt "${apt[@]}"
+  install_brew
   install_asdf
   install pip2 "${pip2[@]}"
   install pip3 "${pip3[@]}"
   install "npm -g" "${npm[@]}"
   install gem "${gem[@]}"
+}
+
+install_brew() {
+  __inf "Initializing brew packages."
+  command brew bundle --global
 }
 
 install_apt() {
@@ -98,6 +104,7 @@ __inf() {
 __err_owned() {
   __ls
   printf "👺 ERR\t${1} isnt asdf managed. Check your ENV.\n"
+  which ${1}
   __ls
 }
 

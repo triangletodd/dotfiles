@@ -66,6 +66,14 @@ fpath=( $ZDOTDIR/funcs "${fpath[@]}" )
 autoload -U $fpath[1]/*(.:t)
 # }}}
 
+# CUSTOM {{{
+source $ZDOTDIR/aliases.zsh
+if [[ -f $ZDOTDIR/$OSTYPE.zsh ]]; then
+  source $ZDOTDIR/$OSTYPE.zsh
+fi
+source $ZDOTDIR/private.zsh
+# }}}
+
 # ZINIT {{{
 local _zinit_plugins=(
    zinit-zsh/z-a-bin-gem-node
@@ -95,8 +103,8 @@ local _zinit_plugins=(
       @sharkdp/bat
    wait lucid load from"gh-r" id-as"exa-bin" mv"exa*->exa" sbin'exa'
       ogham/exa
-   wait lucid load from"gh-r" id-as"fd-bin" sbin'*/fd'
-      @sharkdp/fd
+   #wait lucid load blockf from"gh-r" id-as"fd-bin" sbin'*/fd'
+   #   @sharkdp/fd
 )
 zinit for ${_zinit_plugins#}
 #}}}
@@ -107,9 +115,5 @@ autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay -q
 # }}}
 
-# CUSTOM {{{
-source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/private.zsh
-# }}}
 
 # vim: ft=zsh :
