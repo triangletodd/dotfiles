@@ -16,18 +16,31 @@ autoload -Uz _zinit
 # }}}
 
 # GLOBAL {{{
-setopt autocd # change directories without typing cd
-setopt pushdsilent # pushd and popd don't print dirs on run
-setopt extended_glob # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns
-setopt promptsubst # parameter expansion, command substitution and arithmetic expansion in prompts
-setopt interactive_comments # allow comments even in interactive shells
-setopt auto_list # automatically list choices on ambiguous completion
-setopt auto_menu # automatically use menu completion
-setopt always_to_end # move cursor to end if word had one match
-setopt hist_ignore_all_dups # remove older duplicate entries from history
-setopt hist_reduce_blanks # remove superfluous blanks from history items
-setopt inc_append_history # save history entries as soon as they are entered
-setopt share_history # share history between different instances of the shell
+setopt autocd                   # Change directories without typing cd
+setopt pushdsilent              # pushd and popd don't print dirs on run
+setopt extended_glob            # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns
+setopt promptsubst              # Parameter expansion, command substitution and arithmetic expansion in prompts
+setopt interactive_comments     # Allow comments even in interactive shells
+setopt auto_list                # Automatically list choices on ambiguous completion
+setopt auto_menu                # Automatically use menu completion
+setopt always_to_end            # Move cursor to end if word had one match
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt bang_hist                 # Treat the '!' character specially during expansion.
+setopt extended_history          # Write the history file in the ":start:elapsed;command" format.
+setopt inc_append_history        # Write to the history file immediately, not when the shell exits.
+setopt share_history             # Share history between all sessions.
+setopt hist_expire_dups_first    # Expire duplicate entries first when trimming history.
+setopt hist_ignore_dups          # Don't record an entry that was just recorded again.
+setopt hist_ignore_all_dups      # Delete old recorded entry if new entry is a duplicate.
+setopt hist_find_no_dups         # Do not display a line previously found.
+setopt hist_ignore_space         # Don't record an entry starting with a space.
+setopt hist_save_no_dups         # Don't write duplicate entries in the history file.
+setopt hist_reduce_blanks        # Remove superfluous blanks before recording entry.
+setopt hist_verify               # Don't execute immediately upon history expansion.
+setopt hist_beep                 # Beep when accessing nonexistent history.
 
 path=(
   "$HOME/bin"
@@ -41,13 +54,8 @@ export PAGER=nvimpager
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
-setopt hist_ignore_all_dups # remove older duplicate entries from history
-setopt hist_reduce_blanks # remove superfluous blanks from history items
-setopt inc_append_history # save history entries as soon as they are entered
-setopt share_history # share history between different instances of the shell
-
 ASDF_DIR=$HOME/.asdf
-FZF_COMPLETION_TRIGGER='**'
+FZF_COMPLETION_TRIGGER='~~'
 FZF_COMPLETION_OPTS='+c -x'
 FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -69,23 +77,25 @@ local _zinit_plugins=(
       @Homebrew/install
    wait lucid
       zdharma/fast-syntax-highlighting
+   wait lucid multisrc"shell/{completion,key-bindings}.zsh"
+      junegunn/fzf
    wait lucid
       zsh-users/zsh-autosuggestions
    wait lucid blockf atpull'zinit creinstall -q .'
       zsh-users/zsh-completions
    wait lucid load
       @agkozak/zsh-z
-   wait lucid load from"gh-r" sbin'*/bin/gh'
+   wait lucid load from"gh-r" id-as"gh-bin" sbin'*/bin/gh'
       @cli/cli
-   wait lucid load from"gh-r" sbin'nvim-osx64/bin/nvim'
+   wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim-osx64/bin/nvim'
       @neovim/neovim
-   wait lucid load from"gh-r" sbin'fzf'
+   wait lucid load from"gh-r" id-as"fzf-bin" sbin'fzf'
       @junegunn/fzf
-   wait lucid load from"gh-r" sbin'*/bat'
+   wait lucid load from"gh-r" id-as"bat-bin" sbin'*/bat'
       @sharkdp/bat
-   wait lucid load from"gh-r" mv"exa*->exa" sbin'exa'
+   wait lucid load from"gh-r" id-as"exa-bin" mv"exa*->exa" sbin'exa'
       ogham/exa
-   wait lucid load from"gh-r" sbin'*/fd'
+   wait lucid load from"gh-r" id-as"fd-bin" sbin'*/fd'
       @sharkdp/fd
 )
 zinit for ${_zinit_plugins#}
