@@ -66,13 +66,10 @@ fpath=( $ZDOTDIR/funcs "${fpath[@]}" )
 autoload -U $fpath[1]/*(.:t)
 # }}}
 
-# CUSTOM {{{
 source $ZDOTDIR/aliases.zsh
 if [[ -f $ZDOTDIR/$OSTYPE.zsh ]]; then
   source $ZDOTDIR/$OSTYPE.zsh
 fi
-source $ZDOTDIR/private.zsh
-# }}}
 
 # ZINIT {{{
 local _zinit_plugins=(
@@ -115,5 +112,6 @@ autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay -q
 # }}}
 
+source $ZDOTDIR/private.zsh
 
 # vim: ft=zsh :
