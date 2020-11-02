@@ -75,19 +75,19 @@ local _zinit_plugins=(
       starship/starship
    atclone"./install.sh" as"null"
       @Homebrew/install
-   wait lucid
+   wait lucid src"fast-syntax-highlighting.plugin.zsh"
       zdharma/fast-syntax-highlighting
-   wait lucid multisrc"shell/{completion,key-bindings}.zsh"
-      junegunn/fzf
-   wait lucid
-      zsh-users/zsh-autosuggestions
-   wait lucid blockf atpull'zinit creinstall -q .'
-      zsh-users/zsh-completions
    wait lucid load
       @agkozak/zsh-z
+   wait lucid multisrc"shell/{completion,key-bindings}.zsh"
+      junegunn/fzf
+   wait lucid src"zsh-autosuggestions.zsh"
+      zsh-users/zsh-autosuggestions
+   wait lucid blockf atpull'zinit creinstall -q src/'
+      zsh-users/zsh-completions
    wait lucid load from"gh-r" id-as"gh-bin" sbin'*/bin/gh'
       @cli/cli
-   wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim-osx64/bin/nvim'
+   wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim*/bin/nvim'
       @neovim/neovim
    wait lucid load from"gh-r" id-as"fzf-bin" sbin'fzf'
       @junegunn/fzf
