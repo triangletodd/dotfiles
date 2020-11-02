@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
+set -e
 
 main() {
+  local apt=(
+    "build-essential" "zlib1g-dev" "libxml2-dev"
+    "libxslt1-dev" "libssl-dev" "libbz2-dev"
+    "libreadline-dev" "libsqlite3-dev" "libffi-dev"
+  )
   local pip2=( "neovim" )
   local pip3=( "neovim" )
   local npm=( "neovim" )
   local gem=( "neovim" )
 
+  install_apt "${apt[@]}"
   install_asdf
   install pip2 "${pip2[@]}"
   install pip3 "${pip3[@]}"
@@ -13,16 +20,26 @@ main() {
   install gem "${gem[@]}"
 }
 
+install_apt() {
+  if [[ $(__os_type) == 'Ubuntu' ]]; then
+    __inf "Initializing apt packages."
+    sudo apt-get update
+    sudo apt-get install "$@"
+  fi
+}
+
 install_asdf() {
   __inf "Initializing ASDF plugins."
   plugins="$(cat ~/.tool-versions | awk '{print $1}')"
 
+  set +e
   for plugin in $plugins; do
     command asdf plugin add $plugin
     if [[ $plugin == nodejs ]]; then
       bash -c "$(__asdf_data_dir)/plugins/nodejs/bin/import-release-team-keyring"
     fi
   done
+  set -e
 
   __inf "Installing ASDF plugins."
   command asdf install
@@ -48,6 +65,20 @@ __asdf_data_dir() {
   fi
 
   echo "$data_dir"
+}
+
+__os_name() {
+  command cat /etc/*release | grep -w NAME | tr -d 'NAME="'
+}
+
+__os_type() {
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    printf $(__os_name)
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    printf "Darwin"
+  else
+    printf "Unknown"
+  fi
 }
 
 __asdf_owned() {
