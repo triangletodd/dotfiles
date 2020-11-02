@@ -8,10 +8,11 @@ tap "homebrew/services"
 brew "ag"
 brew "ack"
 brew "bc"
+brew "coreutils" if OS.mac?
 brew "diff-so-fancy"
 brew "elinks"
 brew "gcc"
-brew "gnu-sed"
+brew "gnu-sed" if OS.mac?
 brew "gh"
 brew "git"
 brew "gnupg"
@@ -23,9 +24,7 @@ brew "krew"
 brew "lazydocker"
 brew "lazygit"
 brew "litecli"
-if OS.mac?
-  brew "mas"
-end
+brew "mas" if OS.mac?
 brew "nmap"
 brew "pandoc"
 brew "prettyping"

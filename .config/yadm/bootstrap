@@ -19,6 +19,13 @@ main() {
   install pip3 "${pip3[@]}"
   install "npm -g" "${npm[@]}"
   install gem "${gem[@]}"
+  install_nvim
+}
+
+install_nvim() {
+  __inf "Initializing vim plugins."
+  command nvim +PlugInstall +qall
+  command nvim +UpdateRemotePlugins +qall
 }
 
 install_brew() {
