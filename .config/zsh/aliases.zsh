@@ -13,10 +13,10 @@ fi
 
 ## conf aliases
 alias tedit='pushd ${HOME} && \
-  nvim .tmux.conf .tmux_line.conf; \
+  vim -p .tmux.conf .tmux_line.conf; \
   popd'
 alias vedit='pushd ${XDG_CONFIG_HOME} && \
-  vim vim/vimrc nvim/init.vim; \
+  vim -p vim/vimrc nvim/init.vim; \
   popd'
 alias zedit='pushd "${ZDOTDIR}" && \
   vim -p ${HOME}/.zshenv .zshrc *.zsh; \

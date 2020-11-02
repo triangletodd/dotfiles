@@ -31,42 +31,6 @@ runtime incoming/plug.vim
 
 
 " ============================================================================ "
-" ===                              OPTIONS                                 === "
-" ============================================================================ "
-
-" - options
-set hidden                                          " don't unload buffer when it is YXXYabandon
-set ruler
-set number                                          " show line and cursor number at position
-set mouse=a                                         " enable mouse suppose by default
-set nobackup                                        " keep backup file after overwriting a file
-set autoread                                        " autoread files when changes are detected on disk
-set hlsearch
-set showmatch
-set incsearch
-set showmatch                                       " briefly jump to matching bracket if jinsert one
-set expandtab                                       " use spaces when <Tab> is inserted
-set tabstop:2                                       " number of spaces that <Tab> in file uses
-set noswapfile                                      " whether to use a swapfile for a buffer
-set cmdheight=2                                     " Give more space for displaying messages.
-set shortmess+=c                                    " Don't pass messages to ins-completion-menu
-set shiftwidth=2                                    " number of spaces to use for (auto)indent step
-set termguicolors
-set nowritebackup
-set viminfo='1000
-set conceallevel=0
-set updatetime=300                                  " longer leads to noticable delays
-set encoding=utf-8
-set signcolumn=yes
-set background=dark
-set termencoding=utf-8
-set wildmode=list:longest                           " set wildmode=list:longest
-set fillchars+=stl:\ ,stlnc:\                       " automatically detected values for 'fileformat'
-set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵,space:·   " characters for displaying in list mode
-
-
-
-" ============================================================================ "
 " ===                               PLUGINS                                === "
 " ============================================================================ "
 
@@ -255,6 +219,44 @@ let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs neede
 let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
+
+
+
+" ============================================================================ "
+" ===                              OPTIONS                                 === "
+" ============================================================================ "
+
+" - options
+set hidden                                          " don't unload buffer when it is YXXYabandon
+set ruler
+set number                                          " show line and cursor number at position
+set mouse=a                                         " enable mouse suppose by default
+set nobackup                                        " keep backup file after overwriting a file
+set autoread                                        " autoread files when changes are detected on disk
+set hlsearch
+set showmatch
+set incsearch
+set showmatch                                       " briefly jump to matching bracket if jinsert one
+set expandtab                                       " use spaces when <Tab> is inserted
+set tabstop:2                                       " number of spaces that <Tab> in file uses
+set noswapfile                                      " whether to use a swapfile for a buffer
+set cmdheight=2                                     " Give more space for displaying messages.
+set shortmess+=c                                    " Don't pass messages to ins-completion-menu
+set shiftwidth=2                                    " number of spaces to use for (auto)indent step
+set termguicolors
+set nowritebackup
+set viminfo='1000
+set updatetime=300                                  " longer leads to noticable delays
+set encoding=utf-8
+set signcolumn=yes
+set background=dark
+set termencoding=utf-8
+set wildmode=list:longest                           " set wildmode=list:longest
+set fillchars+=stl:\ ,stlnc:\                       " automatically detected values for 'fileformat'
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵,space:·   " characters for displaying in list mode
+set conceallevel=0
+
+
 
 "
 "============================================================================ "
