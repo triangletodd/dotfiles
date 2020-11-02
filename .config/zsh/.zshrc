@@ -112,6 +112,8 @@ autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay -q
 # }}}
 
-source $ZDOTDIR/private.zsh
+if [[ -f $ZDOTDIR/private.zsh ]]; then
+  source $ZDOTDIR/private.zsh
+fi
 
 # vim: ft=zsh :
