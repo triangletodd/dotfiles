@@ -11,6 +11,7 @@ brew "bc"
 brew "coreutils" if OS.mac?
 brew "diff-so-fancy"
 brew "elinks"
+brew "fd"
 brew "gcc"
 brew "gnu-sed" if OS.mac?
 brew "gh"
