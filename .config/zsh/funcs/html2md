@@ -6,7 +6,7 @@ _html2md_usage() {
 }
 
 _html2md_file() {
-  cat "$1" | _html2md_pandoc
+  _html2md_pandoc <<< "$1"
 }
 
 _html2md_curl() {
@@ -17,32 +17,36 @@ _html2md_pandoc() {
   pandoc -fhtml -tmarkdown_strict
 }
 
-if [[ $# -eq 0 ]]; then
-  _html2md_pandoc
-elif [[ $# -eq 1 ]]; then
-  if [[ "$1" =~ ^-{1,2}h(elp)?$ ]]; then
-    _html2md_usage
-    return 0
-  fi
+main() {
+  if [[ $# -eq 0 ]]; then
+    _html2md_pandoc
+  elif [[ $# -eq 1 ]]; then
+    if [[ "$1" =~ ^-{1,2}h(elp)?$ ]]; then
+      _html2md_usage
+      return 0
+    fi
 
-  local handler=""
-  local target="$1"
+    local handler=""
+    local target="$1"
 
-  if [[ -f "$target" ]]; then
-    handler="file"
-  elif [[ "$target" =~ ^http ]]; then
-    handler="curl"
+    if [[ -f "$target" ]]; then
+      handler="file"
+    elif [[ "$target" =~ ^http ]]; then
+      handler="curl"
+    else
+      printf "ERROR: I don't know how to handle ${target}.\n"
+      printf "If you're trying to pass a url, please include the protocol.\n\n"
+      _html2md_usage
+      return 1
+    fi
+
+    _html2md_${handler} "$target"
   else
-    printf "ERROR: I don't know how to handle ${target}.\n"
-    printf "If you're trying to pass a url, please include the protocol.\n\n"
     _html2md_usage
     return 1
   fi
+}
 
-  _html2md_${handler} "$target"
-else
-  _html2md_usage
-  return 1
-fi
+main "$@"
 
 # vim: ft=zsh :
