@@ -1,9 +1,74 @@
 #!/usr/bin/env bash
-plugins="$(cat ~/.tool-versions | awk '{print $1}')"
 
-for plugin in $plugins; do
-  asdf plugin add $plugin
-done
+main() {
+  local pip2=( "neovim" )
+  local pip3=( "neovim" )
+  local npm=( "neovim" )
+  local gem=( "neovim" )
 
-asdf install
+  install_asdf
+  install pip2 "${pip2[@]}"
+  install pip3 "${pip3[@]}"
+  install "npm -g" "${npm[@]}"
+  install gem "${gem[@]}"
+}
+
+install_asdf() {
+  __inf "Initializing ASDF plugins."
+  plugins="$(cat ~/.tool-versions | awk '{print $1}')"
+
+  for plugin in $plugins; do
+    command asdf plugin add $plugin
+    if [[ $plugin == nodejs ]]; then
+      bash -c "$(__asdf_data_dir)/plugins/nodejs/bin/import-release-team-keyring"
+    fi
+  done
+
+  __inf "Installing ASDF plugins."
+  command asdf install
+}
+
+install() {
+  local cmd=$1; shift
+  __inf "Installing ${cmd} requirements."
+  if __asdf_owned ${cmd}; then
+    ${cmd} install "$@"
+  else
+    __err_owned ${cmd}
+  fi
+}
+
+__asdf_data_dir() {
+  local data_dir
+
+  if [ -n "${ASDF_DATA_DIR}" ]; then
+    data_dir="${ASDF_DATA_DIR}"
+  else
+    data_dir="$HOME/.asdf"
+  fi
+
+  echo "$data_dir"
+}
+
+__asdf_owned() {
+  command which $1 | grep -q "$(__asdf_data_dir)"
+}
+
+__ls() {
+  printf "\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\n"
+}
+
+__inf() {
+  __ls
+  printf "📋 INFO\t$@\n"
+  __ls
+}
+
+__err_owned() {
+  __ls
+  printf "👺 ERR\t${1} isnt asdf managed. Check your ENV.\n"
+  __ls
+}
+
+main "$@"
 
