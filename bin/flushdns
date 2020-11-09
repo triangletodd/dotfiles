@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sudo killall -HUP mDNSResponder
+else
+  echo 'Platform not yet supported.'
+fi
