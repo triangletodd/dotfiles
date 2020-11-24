@@ -4,6 +4,59 @@ scan_timeout = 10
 # Disable the newline at the start of the prompt
 add_newline = false
 
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$kubernetes\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$cmd_duration\
+$custom\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$character"""
+
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
@@ -30,19 +83,20 @@ deleted = "🗑️  ×${count}"
 format = "$all_status$ahead_behind"
 
 [gcloud]
-format = "[$symbol$project]($style) "
+format = "[$symbol $project]($style) "
 disabled = false
 
 [kubernetes]
-format = "[$symbol$context@$namespace]($style) in "
-style = "blue bold"
+format = "[$symbol $context@$namespace]($style) in "
+#style = "blue bold"
 disabled = false
 
 [kubernetes.context_aliases]
-"gke_vst-main-nonprod_us-east1_nonprod3-use1" = "nonprod3-use1"
+"gke_vst-main-nonprod_us-east1_nonprod3-use1" = "vmn-np1e1"
+"gke_vst-main-prod_us-east1_prod1-use1" = "vmp-p1e1"
+"gke_vst-main-prod_us-central1-a_prod1-usc1a" = "vmp-p1c1a"
 
 [time]
 time_format = "%T"
 format = "$time($style) "
 disabled = false
-
