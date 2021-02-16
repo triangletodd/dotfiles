@@ -41,7 +41,7 @@ call plug#begin(vimplug_store)
 
   Plug 'neoclide/jsonc.vim'
   "Plug 'sheerun/vim-polyglot'
-  Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'zinit-zsh/zinit-vim-syntax'
 
   Plug 'plasticboy/vim-markdown'
