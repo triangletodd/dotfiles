@@ -1,3 +1,7 @@
 alias pbcopy="xsel -ib"
 
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+LIBREW="~linuxbrew/.linuxbrew/bin/brew"
+
+if [[ -f "${LIBREW}" ]]; then
+  eval $("${LIBREW}" shellenv)
+fi

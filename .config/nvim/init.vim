@@ -40,8 +40,8 @@ call plug#begin(vimplug_store)
   Plug 'ryanoasis/vim-devicons'                          " required by nerdtree
 
   Plug 'neoclide/jsonc.vim'
-  "Plug 'sheerun/vim-polyglot'
-  "Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'fratajczak/one-monokai-vim'
   Plug 'zinit-zsh/zinit-vim-syntax'
 
   Plug 'plasticboy/vim-markdown'

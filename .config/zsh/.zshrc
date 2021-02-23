@@ -50,7 +50,7 @@ path=(
 
 export EDITOR=nvim
 export KEYTIMEOUT=1
-export PAGER=nvimpager
+#export PAGER=nvimpager
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
