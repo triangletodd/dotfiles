@@ -5,6 +5,6 @@ kubectl 1.17.0
 nodejs 12.19.0
 python 2.7.18 3.8.0
 ruby 2.6.5
-terraform 0.13.5
-tmux 3.2-rc
+terraform 1.0.4
 yarn 1.22.10
+rust 1.54.0

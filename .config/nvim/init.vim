@@ -37,9 +37,11 @@ runtime incoming/plug.vim
 " - plugins
 call plug#begin(vimplug_store)
   Plug 'godlygeek/tabular'                               " required by vim-markdown
+  Plug 'rodjek/vim-puppet'
   Plug 'ryanoasis/vim-devicons'                          " required by nerdtree
 
   Plug 'neoclide/jsonc.vim'
+  Plug 'lepture/vim-jinja'
   Plug 'sheerun/vim-polyglot'
   Plug 'fratajczak/one-monokai-vim'
   Plug 'zinit-zsh/zinit-vim-syntax'
