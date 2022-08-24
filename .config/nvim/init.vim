@@ -2,14 +2,6 @@
 let home = $HOME
 let shell = $SHELL
 let nvim_home = home . '/.config/nvim'
-let asdf_home = home . '/.asdf'
-let asdf_installs = home . '/.asdf/installs'
-
-" - scripting paths
-let g:node_host_prog = asdf_home . '/shims/node'
-let g:node_host_prod = asdf_home . '/shims/node'
-let g:python_host_prog = asdf_home . '/shims/python2'
-let g:python3_host_prog = asdf_home . '/shims/python3'
 
 " - truecolor
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1

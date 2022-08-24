@@ -1,4 +1,4 @@
-zinit delete -a -y
+zi delete -a -y
 rm -rf $ZDOTDIR/.zcompdump
 exec $SHELL -l
 

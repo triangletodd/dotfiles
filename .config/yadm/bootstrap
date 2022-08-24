@@ -13,7 +13,7 @@ main() {
   local gem=( "neovim" )
 
   install_apt "${apt[@]}"
-  install_brew
+  # install_brew
   install_asdf
   install pip2 "${pip2[@]}"
   install pip3 "${pip3[@]}"
@@ -22,23 +22,17 @@ main() {
   install_nvim
 }
 
-install_nvim() {
-  __inf "Initializing vim plugins."
-  command nvim +PlugInstall +qall
-  command nvim +UpdateRemotePlugins +qall
-}
-
-install_brew() {
-  __inf "Initializing brew packages."
-  command brew bundle --global
-}
-
 install_apt() {
   if [[ $(__os_type) == 'Ubuntu' ]]; then
     __inf "Initializing apt packages."
     sudo apt-get update
     sudo apt-get install "$@"
   fi
+}
+
+install_brew() {
+  __inf "Initializing brew packages."
+  command brew bundle --global
 }
 
 install_asdf() {
@@ -56,6 +50,12 @@ install_asdf() {
 
   __inf "Installing ASDF plugins."
   command asdf install
+}
+
+install_nvim() {
+  __inf "Initializing vim plugins."
+  command nvim +PlugInstall +qall
+  command nvim +UpdateRemotePlugins +qall
 }
 
 install() {

@@ -1,18 +1,18 @@
 #!/usr/bin/env zsh
 # INIT {{{
-declare -A ZINIT
-ZINIT[HOME_DIR]="${ZDOTDIR}/incoming"
-ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
+declare -A ZI
+ZI[HOME_DIR]="${ZDOTDIR}/incoming"
+ZI[BIN_DIR]="${ZI[HOME_DIR]}/bin"
 
-if [[ ! -f "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
-  mkdir -p "${ZINIT[HOME_DIR]}"
-  git clone https://github.com/zdharma/zinit.git "${ZINIT[BIN_DIR]}"
+if [[ ! -f "${ZI[BIN_DIR]}/zi.zsh" ]]; then
+  mkdir -p "${ZI[HOME_DIR]}"
+  git clone https://github.com/z-shell/zi "${ZI[BIN_DIR]}"
 fi
 
-source "${ZINIT[BIN_DIR]}/zinit.zsh"
+source "${ZI[BIN_DIR]}/zi.zsh"
 
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 # }}}
 
 # GLOBAL {{{
@@ -48,18 +48,115 @@ path=(
   $path
 )
 
+# Load starship theme
+# starship
+# export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+# export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+zi ice lucid \
+  from"gh-r" \
+  as"command" \
+  bpick"*.tar.gz" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+zi light starship/starship
+
+# fzf
+zi snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+zi snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+zi ice \
+  as"program" \
+  from"gh-r"
+zi light junegunn/fzf-bin
+
+# syntax highlight
+zi light zsh-users/zsh-syntax-highlighting
+
+# direnv
+zi wait'!1' lucid \
+  from"gh-r" \
+  as"program" \
+  mv"direnv* -> direnv" \
+  pick"direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' \
+  src'zhook.zsh' \
+  light-mode for @direnv/direnv
+
+#asdf
+  zi wait'1' lucid \
+  atinit"export \
+    ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/config \
+    ASDF_DATA_DIR=~$XDG_CONFIG_HOME/asdf \
+    ASDF_DIR=$ZI[HOME_DIR]/plugins/asdf-vm---asdf" \
+  pick"asdf.sh" \
+  light-mode for @asdf-vm/asdf
+
+# delta
+zi wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"delta*/delta" \
+  light-mode for @dandavison/delta
+
+# exa
+zi wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"**/exa" \
+  light-mode for @ogham/exa
+
+# nvim
+zi wait'1q' lucid \
+  from"gh-r" \
+  as"program" \
+  light-mode for @neovim/neovim
+
+  # ripgrep
+zi wait'1' lucid blockf nocompletions \
+  from"gh-r" \
+  as'program' \
+  pick'ripgrep*/rg' \
+  atclone'chown -R $(id -nu):$(id -ng) .; zi creinstall -q BurntSushi/ripgrep' \
+  atpull'%atclone' \
+  light-mode for @BurntSushi/ripgrep
+
+  # fd
+zi wait'1' lucid blockf nocompletions \
+  from"gh-r" \
+  as'program' \
+  cp"fd-*/autocomplete/_fd -> _fd" \
+  pick'fd*/fd' \
+  atclone'chown -R $(id -nu):$(id -ng) .; zi creinstall -q sharkdp/fd' \
+  atpull'%atclone' \
+  light-mode for @sharkdp/fd
+
+# bat
+zi wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  cp"bat/autocomplete/bat.zsh -> _bat" \
+  pick"bat*/bat" \
+  atload"export BAT_THEME='gruvbox-dark'; alias cat=bat" \
+  light-mode for @sharkdp/bat
+
+# jq
+zi wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  mv"jq* -> jq" \
+  pick"**/jq" \
+  light-mode for @stedolan/jq
+
 export EDITOR=nvim
 export KEYTIMEOUT=1
-#export PAGER=nvimpager
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
-ASDF_DIR=$HOME/.asdf
 FZF_COMPLETION_TRIGGER='~~'
 FZF_COMPLETION_OPTS='+c -x'
 FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# }}}
 
 # FUNCTIONS {{{
 fpath=( $ZDOTDIR/funcs "${fpath[@]}" )
@@ -71,45 +168,30 @@ if [[ -f $ZDOTDIR/$OSTYPE.zsh ]]; then
   source $ZDOTDIR/$OSTYPE.zsh
 fi
 
-# ZINIT {{{
-local _zinit_plugins=(
-   zinit-zsh/z-a-bin-gem-node
-   load
-      @asdf-vm/asdf
-   load from"gh-r" atload'eval "$(starship init zsh)"' sbin'starship'
-      starship/starship
-   atclone"./install.sh" as"null"
-      @Homebrew/install
-   wait lucid src"fast-syntax-highlighting.plugin.zsh"
-      zdharma/fast-syntax-highlighting
-   wait lucid load
-      @agkozak/zsh-z
-   wait lucid multisrc"shell/{completion,key-bindings}.zsh"
-      junegunn/fzf
-   wait lucid src"zsh-autosuggestions.zsh"
-      zsh-users/zsh-autosuggestions
-   wait lucid blockf atpull'zinit creinstall -q src/'
-      zsh-users/zsh-completions
-   wait lucid load from"gh-r" id-as"gh-bin" sbin'*/bin/gh'
-      @cli/cli
-   wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim*/bin/nvim'
-      @neovim/neovim
-   wait lucid load from"gh-r" id-as"fzf-bin" sbin'fzf'
-      @junegunn/fzf
-   wait lucid load from"gh-r" id-as"bat-bin" sbin'*/bat'
-      @sharkdp/bat
-   wait lucid load from"gh-r" id-as"exa-bin" mv"exa*->exa" sbin'exa'
-      ogham/exa
-   #wait lucid load blockf from"gh-r" id-as"fd-bin" sbin'*/fd'
-   #   @sharkdp/fd
-)
-zinit for ${_zinit_plugins#}
-#}}}
+# # ZI {{{
+# local _zi_plugins=(
+#    atclone"./install.sh" as"null"
+#       @Homebrew/install
+#    wait lucid src"fast-syntax-highlighting.plugin.zsh"
+#       zdharma/fast-syntax-highlighting
+#    wait lucid src"zsh-autosuggestions.zsh"
+#       zsh-users/zsh-autosuggestions
+#    wait lucid blockf atpull'zi creinstall -q src/'
+#       zsh-users/zsh-completions
+#    wait lucid load from"gh-r" id-as"gh-bin" sbin'*/bin/gh'
+#       @cli/cli
+#    wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim*/bin/nvim'
+#       @neovim/neovim
+# )
+# zi for ${_zi_plugins#}
+# #}}}
+
+
 
 # COMPINIT {{{
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-zinit cdreplay -q
+zi cdreplay -q
 # }}}
 
 if [[ -f $ZDOTDIR/private.zsh ]]; then
