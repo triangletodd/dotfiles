@@ -64,10 +64,6 @@ zi light starship/starship
 # fzf
 zi snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 zi snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
-zi ice \
-  as"program" \
-  from"gh-r"
-zi light junegunn/fzf-bin
 
 # syntax highlight
 zi light zsh-users/zsh-syntax-highlighting
@@ -87,9 +83,9 @@ zi wait'!1' lucid \
   zi wait'1' lucid \
   atinit"export \
     ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/config \
-    ASDF_DATA_DIR=~$XDG_CONFIG_HOME/asdf \
+    ASDF_DATA_DIR=$XDG_CONFIG_HOME/asdf \
     ASDF_DIR=$ZI[HOME_DIR]/plugins/asdf-vm---asdf" \
-  pick"asdf.sh" \
+  src"asdf.sh" \
   light-mode for @asdf-vm/asdf
 
 # delta
@@ -105,12 +101,6 @@ zi wait'1' lucid \
   as"program" \
   pick"**/exa" \
   light-mode for @ogham/exa
-
-# nvim
-zi wait'1q' lucid \
-  from"gh-r" \
-  as"program" \
-  light-mode for @neovim/neovim
 
   # ripgrep
 zi wait'1' lucid blockf nocompletions \
@@ -167,25 +157,6 @@ source $ZDOTDIR/aliases.zsh
 if [[ -f $ZDOTDIR/$OSTYPE.zsh ]]; then
   source $ZDOTDIR/$OSTYPE.zsh
 fi
-
-# # ZI {{{
-# local _zi_plugins=(
-#    atclone"./install.sh" as"null"
-#       @Homebrew/install
-#    wait lucid src"fast-syntax-highlighting.plugin.zsh"
-#       zdharma/fast-syntax-highlighting
-#    wait lucid src"zsh-autosuggestions.zsh"
-#       zsh-users/zsh-autosuggestions
-#    wait lucid blockf atpull'zi creinstall -q src/'
-#       zsh-users/zsh-completions
-#    wait lucid load from"gh-r" id-as"gh-bin" sbin'*/bin/gh'
-#       @cli/cli
-#    wait lucid load from"gh-r" id-as"nvim-bin" sbin'nvim*/bin/nvim'
-#       @neovim/neovim
-# )
-# zi for ${_zi_plugins#}
-# #}}}
-
 
 
 # COMPINIT {{{

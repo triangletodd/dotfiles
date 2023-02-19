@@ -36,18 +36,13 @@ call plug#begin(vimplug_store)
   Plug 'lepture/vim-jinja'
   Plug 'sheerun/vim-polyglot'
   Plug 'fratajczak/one-monokai-vim'
-  Plug 'zinit-zsh/zinit-vim-syntax'
+  Plug 'zdharma-continuum/zinit-vim-syntax'
 
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
   Plug 'Yggdroot/indentLine'
-
-  Plug 'dracula/vim'
-  Plug 'overcache/NeoSolarized'
-  Plug 'lifepillar/vim-gruvbox8'
-  Plug 'sainnhe/gruvbox-material'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'arcticicestudio/nord-vim'
 
   Plug 'edkolev/tmuxline.vim'
   Plug 'vim-airline/vim-airline'
@@ -64,7 +59,6 @@ call plug#begin(vimplug_store)
   Plug 'mattn/webapi-vim'
 
   Plug 'scrooloose/nerdtree'                                    " file browser
-  Plug 'liuchengxu/vista.vim'                                   " tag helper
   Plug 'Shougo/deoplete.nvim'                                   " completion
   Plug 'voldikss/vim-floaterm'                                  " floating terminal
   Plug 'preservim/nerdcommenter'                                " line commenting
@@ -137,7 +131,7 @@ autocmd FileType markdown nnoremap <c-/> :MarkdownPreview<CR>
 " - theme
 "let g:material_theme_style = "palenight"
 "let g:material_terminal_italics = 1
-colorscheme gruvbox-material
+colorscheme nord
 
 
 " - deoplete.
@@ -169,13 +163,6 @@ command! VimRuntime call fzf#run(fzf#wrap({
   \ 'source': split(substitute(execute('scriptnames'), ' *\d*: ', '', 'g'), "\n"),
   \ 'options': ['--prompt', 'Vim> ', '--nth=2'],
   \ }))
-
-" - vista
-let g:vista#renderer#enable_icon = 1
-let g:vista_default_executive = 'ctags'
-let g:vista_fzf_preview = ['right:50%']
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " - nerdtree
 let g:NERDTreeMinimalUI = 1
