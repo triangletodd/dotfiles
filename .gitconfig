@@ -1,63 +1,72 @@
 [user]
-  name = Todd Edwards
-  email = github@rte.dev
-  signingkey = ACD861F90E167231
+	name = Todd Edwards
+	email = github@rte.dev
+	signingkey = ACD861F90E167231
 [core]
-  diff = auto
-  ui = true
+	diff = auto
+	ui = true
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+[commit]
+	gpgsign = false
+[grep]
+	extendedRegexp = true
+	lineNumber = true
 [push]
-  default = current
+	default = current
 [pull]
-  rebase = true
+	rebase = true
 [pretty]
-  pretty-history = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+	pretty-history = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 [status]
-  submodule = 1
+	submodule = 1
 [alias]
-  co = checkout
-  cob = checkout -b
-  coo = !git fetch && git checkout
-  br = branch
-  brd = branch -d
-  brD = branch -D
-  merged = branch --merged
-  st = status
-  aa = add -A .
-  cm = commit
-  cma = commit --amend
-  aacm = !git add -A . && git commit
-  cp = cherry-pick
-  develop = !git checkout develop && git pull origin develop
-  staging = !git checkout staging && git pull origin staging
-  master = !git checkout master && git pull origin
-  po = push origin
-  pu = !git push origin `git branch --show-current`
-  pod = push origin develop
-  pos = push origin staging
-  pom = push origin master
-  poh = push origin HEAD
-  plo = pull origin
-  plod = pull origin develop
-  plos = pull origin staging
-  plom = pull origin master
-  ploh = pull origin HEAD
-  unstage = reset --soft HEAD^
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  d = diff
-  ds = diff --staged
-  dft = difftool
-  f = "!git ls-files | rg"
-  gr = grep -Ii
-  la = "!git config -l | grep alias | cut -c 7-"
+	co = checkout
+	cob = checkout -b
+	coo = !git fetch && git checkout
+	br = branch
+	brd = branch -d
+	brD = branch -D
+	merged = branch --merged
+	st = status
+	aa = add -A .
+	cm = commit
+	cma = commit --amend
+	aacm = !git add -A . && git commit
+	cp = cherry-pick
+	develop = !git checkout develop && git pull origin develop
+	staging = !git checkout staging && git pull origin staging
+	master = !git checkout master && git pull origin
+	po = push origin
+	pu = !git push origin `git branch --show-current`
+	pod = push origin develop
+	pos = push origin staging
+	pom = push origin master
+	poh = push origin HEAD
+	plo = pull origin
+	plod = pull origin develop
+	plos = pull origin staging
+	plom = pull origin master
+	ploh = pull origin HEAD
+	unstage = reset --soft HEAD^
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	d = diff
+	ds = diff --staged
+	dft = difftool
+	f = "!git ls-files | rg"
+	gr = grep -Ii
+	la = "!git config -l | grep alias | cut -c 7-"
 [pager]
-  difftool = true
+	difftool = true
 [diff]
-  tool = difftastic
+	tool = difftastic
 [difftool]
-  prompt = false
+	prompt = false
 [difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
+	cmd = difft "$LOCAL" "$REMOTE"
 [github]
-  user = triangletodd
+	user = triangletodd
 
