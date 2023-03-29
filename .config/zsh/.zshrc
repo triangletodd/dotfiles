@@ -138,6 +138,11 @@ zi wait'1' lucid \
   pick"**/jq" \
   light-mode for @stedolan/jq
 
+# kube-aliases
+zi wait'1' lucid \
+  light-mode for @Dbz/kube-aliases
+  
+
 export EDITOR=nvim
 export KEYTIMEOUT=1
 export MANPAGER='nvim +Man!'

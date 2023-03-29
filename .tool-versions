@@ -14,6 +14,7 @@ pulumi 3.55.0
 
 helm 3.11.1
 helmfile 0.151.0
+operator-sdk 1.28.0
 
 nodejs 19.6.1
 yarn 1.22.19
@@ -25,3 +26,10 @@ httpie-go 0.7.0
 difftastic 0.43.1
 
 hugo 0.110.0
+
+ibmcloud 2.14.0
+hub v2.14.2
+
+minikube 1.29.0
+
+krew 0.4.3
