@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo
+cat ~/data/24hoursaday.json| jq -r --arg date "$(date '+%m-%d')" '.contents[] | select( .date | contains($date) ) | .reading'
+echo
